@@ -25,11 +25,29 @@ persist_with: poc_looker_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
+
+
 explore: powerbi_mov_hole {}
 
-explore: powerbi_mov_address {}
+explore: powerbi_mov_address {
+  label: "Explore Poc"
+  join: powerbi_mov_catastro {
+    type: left_outer
+    sql_on: ${powerbi_mov_address.clsdomi} = ${powerbi_mov_catastro.clsdomi} and ${powerbi_mov_address.coddomi} = ${powerbi_mov_catastro.coddomi} ;;
+    relationship: one_to_many
+  }
+  join: powerbi_mov_hole {
+    type: left_outer
+    sql_on: ${powerbi_mov_hole.codloc} = ${powerbi_mov_catastro.codloc}  ;;
+    relationship: many_to_one
+  }
+  join: look_ubicaciones {
+    type: left_outer
+    sql_on:${powerbi_mov_address.cod_pueblo} = ${look_ubicaciones.cod_pueblo}    ;;
+    relationship: one_to_one
+  }
+}
 
-explore: look_catastro_20pct {}
 
 explore: powerbi_mov_catastro {}
 
@@ -41,9 +59,6 @@ explore: powerbi_dbs {}
 
 explore: jira_sg_plataformas_digitales_df {}
 
-explore: look_catastro {}
 
-explore: look_address {}
 
 explore: jira {}
-
