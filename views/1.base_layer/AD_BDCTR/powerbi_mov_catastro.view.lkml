@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Powerbi Mov Catastro"
 view: powerbi_mov_catastro {
+  label: "Catastro"
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `AD_BDCTR.POWERBI_MOV_CATASTRO` ;;

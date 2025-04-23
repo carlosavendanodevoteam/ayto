@@ -55,7 +55,6 @@ explore: look_ubicaciones {}
 
 explore: jira_df {}
 
-explore: powerbi_dbs {}
 
 explore: jira_sg_plataformas_digitales_df {}
 
