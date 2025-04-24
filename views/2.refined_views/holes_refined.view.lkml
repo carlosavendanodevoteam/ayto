@@ -25,12 +25,6 @@ view: +powerbi_mov_hole {
         ) ;;
   }
 
-  dimension: codloc {
-    type: string
-    sql: ${TABLE}.CODLOC ;;
-    label: "Código de Hueco"
-    description: "Identificador único del hueco (CODLOC)."
-  }
 
   measure: cantidad_de_huecos {
     type: count
