@@ -7,12 +7,6 @@ view: +powerbi_mov_address {
     primary_key: yes
   }
 
-  dimension: nom_provincia {
-    type: string
-    sql: ${TABLE}.NOM_PROVINCIA ;;
-    label: "Provincia"
-  }
-
   dimension: precio_m2_provincia {
     type: number
     sql: CASE
