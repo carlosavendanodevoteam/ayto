@@ -63,7 +63,6 @@ dimension: pk_catastro {
     description: "Total de inmuebles registrados en la base catastral"
   }
 
-
   measure: inmuebles_por_tipo {
     type: count
     value_format_name: "decimal_0"
@@ -79,6 +78,5 @@ dimension: pk_catastro {
         ) / COUNT(${codloc}) ;;
     value_format_name: "decimal_2"
   }
-
 
 }
