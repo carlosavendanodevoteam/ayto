@@ -37,6 +37,7 @@ dimension: pk_catastro {
     sql: ${ao_desde} ;;
   }
 
+
   dimension: superficie_total_construida {
     type: number
     label: "Superficie Total Construida (m²)"
