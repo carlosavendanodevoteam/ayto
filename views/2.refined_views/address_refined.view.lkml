@@ -66,15 +66,29 @@ view: +powerbi_mov_address {
         END ;;
   }
 
+  dimension: direccion_completa {
+    type: string
+    label: "Dirección Completa"
+    description: "Concatenación de NOMBRE_VIAL, NUMERO y CALNUM"
+    sql: CONCAT(
+        COALESCE(${TABLE}.NOMBRE_VIAL, ''),
+        ' ',
+        COALESCE(CAST(${TABLE}.NUMERO AS STRING), ''),
+        ' ',
+        COALESCE(CAST(${TABLE}.CALNUM AS STRING), '')
+      ) ;;
+  }
+
+
   dimension: coordenadas_geograficas {
     type: string
     label: "Coordenadas Geográficas"
     description: "Concatenación de LAT_WGS84 y LONG_WGS84"
     sql: CONCAT(
-          COALESCE(${TABLE}.LAT_WGS84, ''),
-          ', ',
-          COALESCE(${TABLE}.LONG_WGS84, '')
-        ) ;;
+        COALESCE(CAST(${TABLE}.LAT_WGS84 AS STRING), ''),
+        ', ',
+        COALESCE(CAST(${TABLE}.LONG_WGS84 AS STRING), '')
+      ) ;;
   }
 
   dimension: codigo_postal {
