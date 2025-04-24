@@ -118,35 +118,6 @@ view: +powerbi_mov_address {
     label: "Código de Domicilio"
     description: "Identificador único del domicilio (CODDOMI)"
   }
-  dimension: nom_provincia {
-    type: string
-    sql: ${TABLE}.NOM_PROVINCIA ;;
-    label: "Provincia"
-  }
-
-  dimension: nom_provincia {
-    type: string
-    sql: ${TABLE}.NOM_PROVINCIA ;;
-    label: "Provincia"
-  }
-
-  dimension: coddomi {
-    type: string
-    sql: ${TABLE}.CODDOMI ;;
-    label: "Código Domicilio"
-  }
-
-  dimension: nom_provincia {
-    type: string
-    sql: ${TABLE}.NOM_PROVINCIA ;;
-    label: "Provincia"
-  }
-
-  dimension: nom_municipio {
-    type: string
-    sql: ${TABLE}.NOM_MUNICIPIO ;;
-    label: "Municipio"
-  }
 
   measure: cantidad_direcciones {
     type: count
@@ -158,13 +129,6 @@ view: +powerbi_mov_address {
     type: count_distinct
     sql: ${coddomi} ;;
     label: "Direcciones por Provincia"
-    description: "Número de direcciones distintas agrupadas por provincia (NOM_PROVINCIA)."
-  }
-
-  measure: direcciones_por_municipio {
-    type: count_distinct
-    sql: ${coddomi} ;;
-    label: "Direcciones por Municipio"
-    description: "Número de direcciones distintas agrupadas por municipio (NOM_MUNICIPIO)."
+    description: "Número de direcciones distintas."
   }
   }
