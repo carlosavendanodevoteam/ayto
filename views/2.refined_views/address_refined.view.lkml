@@ -81,22 +81,14 @@ view: +powerbi_mov_address {
 
 
   dimension: coordenadas_geograficas {
-    type: string
+    type: location
     label: "Coordenadas Geográficas"
-    description: "Concatenación de LAT_WGS84 y LONG_WGS84"
-    sql: CONCAT(
-        COALESCE(CAST(${TABLE}.LAT_WGS84 AS STRING), ''),
-        ', ',
-        COALESCE(CAST(${TABLE}.LONG_WGS84 AS STRING), '')
-      ) ;;
+    description: "Ubicación basada en LAT_WGS84 y LONG_WGS84"
+    sql_latitude: ${TABLE}.LAT_WGS84 ;;
+    sql_longitude: ${TABLE}.LONG_WGS84 ;;
   }
 
-  dimension: codigo_postal {
-    type: string
-    label: "Código Postal"
-    description: "Campo categórico basado en CODPOST"
-    sql: ${TABLE}.CODPOST ;;
-  }
+
 
   dimension: fecha_alta {
     type: date

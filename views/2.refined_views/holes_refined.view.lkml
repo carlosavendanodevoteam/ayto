@@ -19,11 +19,17 @@ view: +powerbi_mov_hole {
         ) ;;
   }
 
+  dimension_group: fecha_movimiento {
+    type: time
+    timeframes: [date]
+    sql: ${TABLE}.FECHA_MOVIMIENTO ;;
+    datatype: date
+  }
+
 
   measure: cantidad_de_huecos {
     type: count
     label: "Cantidad de Huecos"
-    description: "Número total de registros (huecos) basados en CODLOC."
-
+    description: "Cuenta total de registros basados en el campo CODLOC."
   }
   }
