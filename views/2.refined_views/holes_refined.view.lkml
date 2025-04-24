@@ -19,13 +19,6 @@ view: +powerbi_mov_hole {
         ) ;;
   }
 
-  dimension_group: fecha_movimiento {
-    type: time
-    timeframes: [date]
-    sql: ${TABLE}.FECHA_MOVIMIENTO ;;
-    datatype: date
-  }
-
 
   measure: cantidad_de_huecos {
     type: count
