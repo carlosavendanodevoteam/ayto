@@ -13,8 +13,8 @@ view: +powerbi_mov_address {
 
     label: "Valor Catastral Estimado"
 
-    value_format: "\"€\"0.00"
-
+    #value_format: "\"€\"#,##0.00"
+value_format: "\"€\"#,##0"
     sql:
 
       CASE
