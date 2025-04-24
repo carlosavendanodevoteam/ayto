@@ -31,12 +31,6 @@ dimension: pk_catastro {
     END ;;
   }
 
-  dimension: anio_construccion {
-    type: number
-    label: "Año de Construcción"
-    sql: ${ao_desde} ;;
-  }
-
 
   dimension: superficie_total_construida {
     type: number
@@ -63,11 +57,6 @@ dimension: pk_catastro {
     description: "Total de inmuebles registrados en la base catastral"
   }
 
-  measure: inmuebles_por_tipo {
-    type: count
-    value_format_name: "decimal_0"
-    label: "Inmuebles por Tipo"
-  }
 
   measure: superficie_promedio {
     type: number
