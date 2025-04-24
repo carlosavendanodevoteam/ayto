@@ -31,12 +31,6 @@ dimension: pk_catastro {
     END ;;
   }
 
-  dimension: anio_construccion {
-    type: number
-    label: "Año de Construcción"
-    sql: ${ao_desde} ;;
-  }
-
 
   dimension: superficie_total_construida {
     type: number
