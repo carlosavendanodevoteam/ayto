@@ -7,6 +7,26 @@ dimension: pk_catastro {
   primary_key: yes
 }
 
+  dimension: num_habitantes {
+    type: number
+    sql:
+    CASE
+      WHEN ${tipo_bien_catastral} = 'V' THEN ROUND(GREATEST(0, 2.5 + 1 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
+      WHEN ${tipo_bien_catastral} = 'R' THEN ROUND(GREATEST(0, 2.5 + 1 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
+      WHEN ${tipo_bien_catastral} = 'M' THEN ROUND(GREATEST(0, 2.5 + 1 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
+    END ;;
+  }
+
+  dimension: num_mascotas {
+    type: number
+    sql:
+    CASE
+      WHEN ${tipo_bien_catastral} IN ('V', 'R', 'M') THEN
+        ROUND(GREATEST(0, 0.8 + 1.0 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
+    END ;;
+  }
+
+
   dimension: tipo_bien_descriptivo {
     type: string
     label: "Tipo de Bien Catastral Descriptivo"

@@ -15,6 +15,7 @@ view: look_ubicaciones {
   dimension: cod_municipio {
     type: number
     sql: ${TABLE}.COD_MUNICIPIO ;;
+    map_layer_name: municipios
   }
 
   dimension: cod_pais {
@@ -25,6 +26,7 @@ view: look_ubicaciones {
   dimension: cod_provincia {
     type: number
     sql: ${TABLE}.COD_PROVINCIA ;;
+    map_layer_name: provinces
   }
 
   dimension: cod_pueblo {
