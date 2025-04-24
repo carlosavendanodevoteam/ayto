@@ -40,8 +40,10 @@ dimension: pk_catastro {
   dimension: superficie_total_construida {
     type: number
     label: "Superficie Total Construida (m²)"
-    sql: ${TABLE}.sup_cons_sidh + ${TABLE}.sup_cons_nodh ;;
+    value_format_name: "decimal_2"
+    sql: SAFE_CAST(${TABLE}.sup_cons_sidh AS FLOAT64) + SAFE_CAST(${TABLE}.sup_cons_nodh AS FLOAT64) ;;
   }
+
 
   dimension: direccion_completa {
     type: string
@@ -60,12 +62,6 @@ dimension: pk_catastro {
     description: "Total de inmuebles registrados en la base catastral"
   }
 
-  measure: superficie_promedio {
-    type: number
-    label: "Superficie Promedio"
-    sql: (SUM(${sup_cons_sidh}) + SUM(${sup_cons_nodh})) / COUNT(${codloc}) ;;
-    value_format_name: "decimal_2"
-  }
 
   measure: inmuebles_por_tipo {
     type: count
