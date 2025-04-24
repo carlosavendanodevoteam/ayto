@@ -25,12 +25,6 @@ view: +powerbi_mov_hole {
         ) ;;
   }
 
-  dimension: fecha_movimiento {
-    type: date
-    sql: DATE(${TABLE}.FECHA_MOVIMIENTO) ;;
-    label: "Fecha Movimiento"
-    description: "Convertido a tipo date para análisis temporal"
-  }
   dimension: codloc {
     type: string
     sql: ${TABLE}.CODLOC ;;
@@ -51,13 +45,6 @@ view: +powerbi_mov_hole {
     label: "Huecos por Local"
     description: "Cuenta de huecos (CODLOC) agrupados por local (DESC_LOCAL)."
     group_label: "Huecos"
-    filters: [desc_local: "-"]  # Si es necesario aplicar algún filtro específico en 'DESC_LOCAL'
+    filters: [desc_local: "-"]
   }
-
-  measure: huecos_por_estructura {
-    type: count_distinct
-    sql: ${codloc} ;;
-    label: "Huecos por Estructura"
-    description: "Cuenta de huecos (CODLOC) agrupados por estructura (estructura_inmueble)."
   }
-}
