@@ -88,27 +88,11 @@ view: +powerbi_mov_address {
     sql_longitude: ${TABLE}.LONG_WGS84 ;;
   }
 
-
-
-  dimension: fecha_alta {
-    type: date
-    label: "Fecha Alta"
-    description: "Convertido a tipo date para análisis temporal"
-    sql: ${TABLE}.FECHA_ALTA ;;
-  }
-
   dimension: provincia_municipio {
     type: string
     label: "Provincia Municipio"
     description: "Concatenación de NOM_PROVINCIA y NOM_MUNICIPIO"
     sql: CONCAT(${TABLE}.NOM_PROVINCIA, ' - ', ${TABLE}.NOM_MUNICIPIO) ;;
-  }
-
-  dimension: coddomi {
-    type: string
-    sql: ${TABLE}.CODDOMI ;;
-    label: "Código de Domicilio"
-    description: "Identificador único del domicilio (CODDOMI)"
   }
 
   dimension: distrito_postal {
@@ -143,12 +127,6 @@ view: +powerbi_mov_address {
     END ;;
   }
 
-
-  measure: cantidad_direcciones {
-    type: count
-    label: "Cantidad de Direcciones"
-    description: "Cuenta total de registros (direcciones)."
-  }
 
   measure: direcciones_por_provincia {
     type: count_distinct
