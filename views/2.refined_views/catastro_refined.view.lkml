@@ -7,10 +7,40 @@ dimension: pk_catastro {
   primary_key: yes
 }
 
+  dimension: tipo_bien_descriptivo {
+    type: string
+    label: "Tipo de Bien Catastral"
+    sql:
+    CASE
+      WHEN ${tipo_bien_catastral} = 'A' THEN 'Almacén-Estacionamiento'
+      WHEN ${tipo_bien_catastral} = 'B' THEN 'Almacén agrario'
+      WHEN ${tipo_bien_catastral} = 'C' THEN 'Comercial'
+      WHEN ${tipo_bien_catastral} = 'E' THEN 'Cultural'
+      WHEN ${tipo_bien_catastral} = 'G' THEN 'Ocio y hostelería'
+      WHEN ${tipo_bien_catastral} = 'I' THEN 'Industrial'
+      WHEN ${tipo_bien_catastral} = 'J' THEN 'Industrial agrario'
+      WHEN ${tipo_bien_catastral} = 'K' THEN 'Deportivo'
+      WHEN ${tipo_bien_catastral} = 'M' THEN 'Suelo sin edificar / jardinería'
+      WHEN ${tipo_bien_catastral} = 'O' THEN 'Oficinas'
+      WHEN ${tipo_bien_catastral} = 'P' THEN 'Edificio singular'
+      WHEN ${tipo_bien_catastral} = 'R' THEN 'Religioso'
+      WHEN ${tipo_bien_catastral} = 'T' THEN 'Espectáculos'
+      WHEN ${tipo_bien_catastral} = 'V' THEN 'Residencial'
+      WHEN ${tipo_bien_catastral} = 'Y' THEN 'Sanidad y beneficencia'
+      ELSE 'Desconocido'
+    END ;;
+  }
+
+  dimension: anio_construccion {
+    type: number
+    label: "Año de Construcción"
+    sql: ${ao_desde} ;;
+  }
+
   dimension: superficie_total_construida {
     type: number
     label: "Superficie Total Construida (m²)"
-    sql: ${TABLE}.SUP_CONS_SIDH + ${TABLE}.SUP_CONS_NODH ;;
+    sql: ${TABLE}.sup_cons_sidh + ${TABLE}.sup_cons_nodh ;;
   }
 
   dimension: direccion_completa {
@@ -24,5 +54,34 @@ dimension: pk_catastro {
     label: "Fecha Movimiento"
     sql: DATE(${TABLE}.FECHA_MOVIMIENTO) ;;
   }
+
+  measure: cantidad_inmuebles {
+    type: count
+    description: "Total de inmuebles registrados en la base catastral"
+  }
+
+  measure: superficie_promedio {
+    type: number
+    label: "Superficie Promedio"
+    sql: (SUM(${sup_cons_sidh}) + SUM(${sup_cons_nodh})) / COUNT(${codloc}) ;;
+    value_format_name: "decimal_2"
+  }
+
+  measure: inmuebles_por_tipo {
+    type: count
+    value_format_name: "decimal_0"
+    label: "Inmuebles por Tipo"
+  }
+
+  measure: superficie_promedio {
+    type: number
+    label: "Superficie Promedio"
+    sql: (
+          SUM(SAFE_CAST(${sup_cons_sidh} AS FLOAT64)) +
+          SUM(SAFE_CAST(${sup_cons_nodh} AS FLOAT64))
+        ) / COUNT(${codloc}) ;;
+    value_format_name: "decimal_2"
+  }
+
 
 }
