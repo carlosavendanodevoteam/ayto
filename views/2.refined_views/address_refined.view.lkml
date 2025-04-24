@@ -151,7 +151,6 @@ view: +powerbi_mov_address {
     sql: ${coddomi} ;;
     label: "Direcciones por Provincia"
     description: "Número de direcciones distintas agrupadas por provincia (NOM_PROVINCIA)."
-    group_label: "Direcciones"
   }
 
   measure: direcciones_por_municipio {
@@ -159,7 +158,5 @@ view: +powerbi_mov_address {
     sql: ${coddomi} ;;
     label: "Direcciones por Municipio"
     description: "Número de direcciones distintas agrupadas por municipio (NOM_MUNICIPIO)."
-    group_label: "Direcciones"
   }
-
   }
