@@ -7,12 +7,6 @@ view: +powerbi_mov_hole {
     primary_key: yes
   }
 
-  dimension: descripcion_local {
-    type: string
-    label: "Descripción Local"
-    description: "Campo categórico basado en DESC_LOCAL"
-    sql: ${TABLE}.DESC_LOCAL ;;
-  }
 
   dimension: ubicacion_local {
     type: string
@@ -31,14 +25,5 @@ view: +powerbi_mov_hole {
     label: "Cantidad de Huecos"
     description: "Número total de registros (huecos) basados en CODLOC."
 
-  }
-
-  measure: huecos_por_local {
-    type: count_distinct
-    sql: ${codloc} ;;
-    label: "Huecos por Local"
-    description: "Cuenta de huecos (CODLOC) agrupados por local (DESC_LOCAL)."
-    group_label: "Huecos"
-    filters: [desc_local: "-"]
   }
   }
