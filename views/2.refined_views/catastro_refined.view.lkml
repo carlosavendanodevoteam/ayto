@@ -7,6 +7,11 @@ dimension: pk_catastro {
   primary_key: yes
 }
 
+
+
+
+
+
   dimension: num_habitantes {
     type: number
     sql:
