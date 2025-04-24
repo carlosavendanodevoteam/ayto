@@ -46,11 +46,6 @@ dimension: pk_catastro {
     sql: CONCAT(${TABLE}.NOMBRE_VIA, ' ', ${TABLE}.NUMERO_01, ' ', COALESCE(${TABLE}.CALIFICADOR_01, '')) ;;
   }
 
-  dimension: fecha_movimiento {
-    type: date
-    label: "Fecha Movimiento"
-    sql: DATE(${TABLE}.FECHA_MOVIMIENTO) ;;
-  }
 
   measure: cantidad_inmuebles {
     type: count
