@@ -42,7 +42,6 @@ view: +powerbi_mov_hole {
     type: count
     label: "Cantidad de Huecos"
     description: "Número total de registros (huecos) basados en CODLOC."
-    group_label: "Huecos"
 
   }
 
@@ -60,8 +59,5 @@ view: +powerbi_mov_hole {
     sql: ${codloc} ;;
     label: "Huecos por Estructura"
     description: "Cuenta de huecos (CODLOC) agrupados por estructura (estructura_inmueble)."
-    group_label: "Huecos"
-
-
   }
 }
