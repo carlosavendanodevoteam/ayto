@@ -12,6 +12,7 @@ view: powerbi_mov_catastro {
     # A dimension is a groupable field that can be used to filter query results.
     # This dimension will be called "Ao Desde" in Explore.
 
+
   dimension: ao_desde {
     type: string
     sql: ${TABLE}.`AÑO_DESDE` ;;
