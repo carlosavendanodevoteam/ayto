@@ -10,6 +10,7 @@ view: +powerbi_mov_address {
   dimension: nom_provincia {
     type: string
     sql: ${TABLE}.NOM_PROVINCIA ;;
+    label: "Provincia"
   }
 
   dimension: precio_m2_provincia {
@@ -70,4 +71,95 @@ view: +powerbi_mov_address {
           ELSE NULL
         END ;;
   }
-}
+
+  dimension: coordenadas_geograficas {
+    type: string
+    label: "Coordenadas Geográficas"
+    description: "Concatenación de LAT_WGS84 y LONG_WGS84"
+    sql: CONCAT(
+          COALESCE(${TABLE}.LAT_WGS84, ''),
+          ', ',
+          COALESCE(${TABLE}.LONG_WGS84, '')
+        ) ;;
+  }
+
+  dimension: codigo_postal {
+    type: string
+    label: "Código Postal"
+    description: "Campo categórico basado en CODPOST"
+    sql: ${TABLE}.CODPOST ;;
+  }
+
+  dimension: fecha_alta {
+    type: date
+    label: "Fecha Alta"
+    description: "Convertido a tipo date para análisis temporal"
+    sql: ${TABLE}.FECHA_ALTA ;;
+  }
+
+  dimension: provincia_municipio {
+    type: string
+    label: "Provincia Municipio"
+    description: "Concatenación de NOM_PROVINCIA y NOM_MUNICIPIO"
+    sql: CONCAT(${TABLE}.NOM_PROVINCIA, ' - ', ${TABLE}.NOM_MUNICIPIO) ;;
+  }
+
+  dimension: coddomi {
+    type: string
+    sql: ${TABLE}.CODDOMI ;;
+    label: "Código de Domicilio"
+    description: "Identificador único del domicilio (CODDOMI)"
+  }
+  dimension: nom_provincia {
+    type: string
+    sql: ${TABLE}.NOM_PROVINCIA ;;
+    label: "Provincia"
+  }
+
+  dimension: nom_provincia {
+    type: string
+    sql: ${TABLE}.NOM_PROVINCIA ;;
+    label: "Provincia"
+  }
+
+  dimension: coddomi {
+    type: string
+    sql: ${TABLE}.CODDOMI ;;
+    label: "Código Domicilio"
+  }
+
+  dimension: nom_provincia {
+    type: string
+    sql: ${TABLE}.NOM_PROVINCIA ;;
+    label: "Provincia"
+  }
+
+  dimension: nom_municipio {
+    type: string
+    sql: ${TABLE}.NOM_MUNICIPIO ;;
+    label: "Municipio"
+  }
+
+  measure: cantidad_direcciones {
+    type: count
+    label: "Cantidad de Direcciones"
+    description: "Cuenta total de registros (direcciones)."
+  }
+
+  measure: direcciones_por_provincia {
+    type: count_distinct
+    sql: ${coddomi} ;;
+    label: "Direcciones por Provincia"
+    description: "Número de direcciones distintas agrupadas por provincia (NOM_PROVINCIA)."
+    group_label: "Direcciones"
+  }
+
+  measure: direcciones_por_municipio {
+    type: count_distinct
+    sql: ${coddomi} ;;
+    label: "Direcciones por Municipio"
+    description: "Número de direcciones distintas agrupadas por municipio (NOM_MUNICIPIO)."
+    group_label: "Direcciones"
+  }
+
+  }
