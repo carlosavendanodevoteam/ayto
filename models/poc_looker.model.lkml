@@ -14,6 +14,26 @@ datagroup: poc_looker_default_datagroup {
 
 persist_with: poc_looker_default_datagroup
 
+map_layer: provinces {
+  file: "/maps/spain-provinces-geo_.geojson"
+}
+
+map_layer: municipios {
+  file: "/maps/spain-municipalities_.geojson"
+}
+
+map_layer: comunidades {
+  file: "/maps/spain-communities_.geojson"
+}
+
+map_layer: postalcodes {
+  file: "/maps/madrid-postalcodes.topojson"
+}
+
+map_layer: parcelas {
+  file: "/maps/madrid_parcelas_catastrales_filtered.geojson"
+}
+
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
 # fields available to users for data analysis.

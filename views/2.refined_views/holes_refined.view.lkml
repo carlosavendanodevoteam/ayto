@@ -23,7 +23,6 @@ view: +powerbi_mov_hole {
   measure: cantidad_de_huecos {
     type: count
     label: "Cantidad de Huecos"
-    description: "Número total de registros (huecos) basados en CODLOC."
-
+    description: "Cuenta total de registros basados en el campo CODLOC."
   }
   }

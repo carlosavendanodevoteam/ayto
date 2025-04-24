@@ -66,23 +66,29 @@ view: +powerbi_mov_address {
         END ;;
   }
 
-  dimension: coordenadas_geograficas {
+  dimension: direccion_completa {
     type: string
-    label: "Coordenadas Geográficas"
-    description: "Concatenación de LAT_WGS84 y LONG_WGS84"
+    label: "Dirección Completa"
+    description: "Concatenación de NOMBRE_VIAL, NUMERO y CALNUM"
     sql: CONCAT(
-          COALESCE(${TABLE}.LAT_WGS84, ''),
-          ', ',
-          COALESCE(${TABLE}.LONG_WGS84, '')
-        ) ;;
+        COALESCE(${TABLE}.NOMBRE_VIAL, ''),
+        ' ',
+        COALESCE(CAST(${TABLE}.NUMERO AS STRING), ''),
+        ' ',
+        COALESCE(CAST(${TABLE}.CALNUM AS STRING), '')
+      ) ;;
   }
 
-  dimension: codigo_postal {
-    type: string
-    label: "Código Postal"
-    description: "Campo categórico basado en CODPOST"
-    sql: ${TABLE}.CODPOST ;;
+
+  dimension: coordenadas_geograficas {
+    type: location
+    label: "Coordenadas Geográficas"
+    description: "Ubicación basada en LAT_WGS84 y LONG_WGS84"
+    sql_latitude: ${TABLE}.LAT_WGS84 ;;
+    sql_longitude: ${TABLE}.LONG_WGS84 ;;
   }
+
+
 
   dimension: fecha_alta {
     type: date
@@ -104,35 +110,39 @@ view: +powerbi_mov_address {
     label: "Código de Domicilio"
     description: "Identificador único del domicilio (CODDOMI)"
   }
-  dimension: nom_provincia {
+
+  dimension: distrito_postal {
     type: string
-    sql: ${TABLE}.NOM_PROVINCIA ;;
-    label: "Provincia"
+    label: "Distrito Postal"
+    description: "Clasificación del distrito basada en el código postal"
+    sql:
+    CASE
+      WHEN ${codpost} IN (28012, 28013, 28014) THEN 'Centro'
+      WHEN ${codpost} IN (28045, 28005, 28004) THEN 'Arganzuela'
+      WHEN ${codpost} IN (28007, 28009) THEN 'Retiro'
+      WHEN ${codpost} IN (28001, 28006, 28009, 28028) THEN 'Salamanca'
+      WHEN ${codpost} IN (28002, 28036, 28016, 28046, 28048) THEN 'Chamartín'
+      WHEN ${codpost} IN (28020, 28039) THEN 'Tetuán'
+      WHEN ${codpost} IN (28003, 28010, 28015) THEN 'Chamberí'
+      WHEN ${codpost} IN (28034, 28035, 28049, 28029) THEN 'Fuencarral-El Pardo'
+      WHEN ${codpost} IN (28008, 28023, 28040) THEN 'Moncloa-Aravaca'
+      WHEN ${codpost} IN (28024, 28025, 28047) THEN 'Latina'
+      WHEN ${codpost} IN (28026, 28044, 28011) THEN 'Carabanchel'
+      WHEN ${codpost} IN (28054, 28055, 28051, 28052) THEN 'Tetuán'
+      WHEN ${codpost} = 28041 THEN 'Usera'
+      WHEN ${codpost} IN (28018, 28053, 28050, 28038) THEN 'Puente de Vallecas'
+      WHEN ${codpost} = 28030 THEN 'Moratalaz'
+      WHEN ${codpost} IN (28017, 28027, 28043, 28033, 28019) THEN 'Ciudad Lineal'
+      WHEN ${codpost} = 28043 THEN 'Hortaleza'
+      WHEN ${codpost} IN (28021, 28041) THEN 'Villaverde'
+      WHEN ${codpost} = 28031 THEN 'Villa de Vallecas'
+      WHEN ${codpost} = 28032 THEN 'Vicálvaro'
+      WHEN ${codpost} IN (28022, 28037) THEN 'San Blas-Canillejas'
+      WHEN ${codpost} = 28042 THEN 'Barajas'
+      ELSE 'Otro'
+    END ;;
   }
 
-  dimension: nom_provincia {
-    type: string
-    sql: ${TABLE}.NOM_PROVINCIA ;;
-    label: "Provincia"
-  }
-
-  dimension: coddomi {
-    type: string
-    sql: ${TABLE}.CODDOMI ;;
-    label: "Código Domicilio"
-  }
-
-  dimension: nom_provincia {
-    type: string
-    sql: ${TABLE}.NOM_PROVINCIA ;;
-    label: "Provincia"
-  }
-
-  dimension: nom_municipio {
-    type: string
-    sql: ${TABLE}.NOM_MUNICIPIO ;;
-    label: "Municipio"
-  }
 
   measure: cantidad_direcciones {
     type: count
@@ -144,13 +154,6 @@ view: +powerbi_mov_address {
     type: count_distinct
     sql: ${coddomi} ;;
     label: "Direcciones por Provincia"
-    description: "Número de direcciones distintas agrupadas por provincia (NOM_PROVINCIA)."
-  }
-
-  measure: direcciones_por_municipio {
-    type: count_distinct
-    sql: ${coddomi} ;;
-    label: "Direcciones por Municipio"
-    description: "Número de direcciones distintas agrupadas por municipio (NOM_MUNICIPIO)."
+    description: "Número de direcciones distintas."
   }
   }
