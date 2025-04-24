@@ -85,6 +85,7 @@ view: powerbi_mov_address {
   dimension: codpost {
     type: number
     sql: ${TABLE}.CODPOST ;;
+    map_layer_name: postalcodes
   }
 
   dimension: codvial {
