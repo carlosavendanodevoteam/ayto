@@ -9,7 +9,7 @@ dimension: pk_catastro {
 
   dimension: tipo_bien_descriptivo {
     type: string
-    label: "Tipo de Bien Catastral"
+    label: "Tipo de Bien Catastral Descriptivo"
     sql:
     CASE
       WHEN ${tipo_bien_catastral} = 'A' THEN 'Almacén-Estacionamiento'
