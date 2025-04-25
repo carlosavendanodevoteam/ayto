@@ -7,6 +7,11 @@ dimension: pk_catastro {
   primary_key: yes
 }
 
+
+
+
+
+
   dimension: num_habitantes {
     type: number
     sql:
@@ -82,5 +87,4 @@ dimension: pk_catastro {
         ) / COUNT(${codloc}) ;;
     value_format_name: "decimal_2"
   }
-
 }

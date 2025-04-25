@@ -54,7 +54,7 @@ explore: powerbi_mov_address {
   join: powerbi_mov_catastro {
     type: left_outer
     sql_on: ${powerbi_mov_address.clsdomi} = ${powerbi_mov_catastro.clsdomi} and ${powerbi_mov_address.coddomi} = ${powerbi_mov_catastro.coddomi} ;;
-    relationship: one_to_many
+    relationship: many_to_one
   }
   join: powerbi_mov_hole {
     type: left_outer

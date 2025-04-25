@@ -7,6 +7,131 @@ view: +powerbi_mov_address {
     primary_key: yes
   }
 
+  dimension: valor_catastral {
+
+    type: number
+
+    label: "Valor Catastral Estimado"
+
+    #value_format: "\"€\"#,##0.00"
+value_format: "\"€\"#,##0"
+    sql:
+
+      CASE
+
+                    -- ZONA CARA
+
+      WHEN ${codpost} IN (28006,28010,28009,28004,28046,28001,28014,28003,28005,28002) THEN
+
+      CASE
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'V' THEN ROUND((250000 + (RAND() * 230000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'A' THEN ROUND((75000 + (RAND() * 60000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'C' THEN ROUND((100000 + (RAND() * 200000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'E' THEN ROUND((65000 + (RAND() * 70000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'M' THEN ROUND((89000 + (RAND() * 1000000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'G' THEN ROUND((20000 + (RAND() * 5000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'O' THEN ROUND((100000 + (RAND() * 400000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'K' THEN ROUND((120000 + (RAND() * 120000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'I' THEN ROUND((100000 + (RAND() * 500000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'R' THEN ROUND((100000 + (RAND() * 150000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'Y' THEN ROUND((5000 + (RAND() * 8000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'T' THEN ROUND((100000 + (RAND() * 300000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'P' THEN ROUND((100000 + (RAND() * 300000)) * 5 * (RAND() * 0.5 + 0.75))
+
+      END
+
+
+
+      -- ZONA BARATA
+
+      WHEN ${codpost} IN (28021,28053,28018,28025,28026,28038,28031,28041,28054,28032) THEN
+
+      CASE
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'V' THEN ROUND((250000 + (RAND() * 230000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'A' THEN ROUND((75000 + (RAND() * 425000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'C' THEN ROUND((100000 + (RAND() * 200000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'E' THEN ROUND((65000 + (RAND() * 685000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'M' THEN ROUND((89000 + (RAND() * 1000000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'G' THEN ROUND((20000 + (RAND() * 5000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'O' THEN ROUND((100000 + (RAND() * 400000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'K' THEN ROUND((120000 + (RAND() * 120000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'I' THEN ROUND((100000 + (RAND() * 500000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'R' THEN ROUND((100000 + (RAND() * 150000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'Y' THEN ROUND((5000 + (RAND() * 8000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'T' THEN ROUND((100000 + (RAND() * 300000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'P' THEN ROUND((100000 + (RAND() * 300000)) * 0.1 * (RAND() * 0.5 + 0.75))
+
+      END
+
+
+
+      -- ZONA ESTÁNDAR
+
+      ELSE
+
+      CASE
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'V' THEN ROUND((250000 + (RAND() * 1750000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'A' THEN ROUND((75000 + (RAND() * 425000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'C' THEN ROUND((100000 + (RAND() * 200000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'E' THEN ROUND((65000 + (RAND() * 685000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'M' THEN ROUND((89000 + (RAND() * 1000000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'G' THEN ROUND((20000 + (RAND() * 5000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'O' THEN ROUND((100000 + (RAND() * 400000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'K' THEN ROUND((120000 + (RAND() * 120000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'I' THEN ROUND((100000 + (RAND() * 500000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'R' THEN ROUND((100000 + (RAND() * 150000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'Y' THEN ROUND((5000 + (RAND() * 8000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'T' THEN ROUND((100000 + (RAND() * 300000)) * (RAND() * 0.5 + 0.75))
+
+      WHEN ${powerbi_mov_catastro.tipo_bien_catastral} = 'P' THEN ROUND((100000 + (RAND() * 300000)) * (RAND() * 0.5 + 0.75))
+
+      ELSE NULL
+
+      END
+
+      END ;;
+
+  }
+
+
   dimension: precio_m2_provincia {
     type: number
     sql: CASE
