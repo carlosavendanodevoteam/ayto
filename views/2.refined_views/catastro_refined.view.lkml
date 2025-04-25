@@ -87,4 +87,6 @@ dimension: pk_catastro {
         ) / COUNT(${codloc}) ;;
     value_format_name: "decimal_2"
   }
+
+
 }

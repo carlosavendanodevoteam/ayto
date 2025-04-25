@@ -259,4 +259,31 @@ value_format: "\"€\"#,##0"
     label: "Direcciones por Provincia"
     description: "Número de direcciones distintas."
   }
+
+  dimension: metros2_distrito {
+    type: number
+    sql:
+    CASE
+      WHEN ${distrito_postal} = 'Latina' THEN 2110206
+      WHEN ${distrito_postal} = 'Carabanchel' THEN 1425000
+      WHEN ${distrito_postal} = 'Tetuán' THEN 5370000
+      WHEN ${distrito_postal} = 'Usera' THEN 7777700
+      WHEN ${distrito_postal} = 'Puente de Vallecas' THEN 14891400
+      WHEN ${distrito_postal} = 'Ciudad Lineal' THEN 11366000
+      WHEN ${distrito_postal} = 'Hortaleza' THEN 28010000
+      WHEN ${distrito_postal} = 'Villaverde' THEN 20286500
+      WHEN ${distrito_postal} = 'Villa de Vallecas' THEN 5146720
+      WHEN ${distrito_postal} = 'Vicálvaro' THEN 2800000
+      WHEN ${distrito_postal} = 'San Blas-Canillejas' THEN 22290000
+      WHEN ${distrito_postal} = 'Barajas' THEN 41920000
+      ELSE NULL
+    END
+  ;;
+  }
+
+  measure: promedio_habitantes_por_m2 {
+    type: number
+    sql: ${powerbi_mov_catastro.num_habitantes} / NULLIF(${metros2_distrito}, 0) ;;
+  }
+
   }
