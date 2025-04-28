@@ -23,7 +23,7 @@ view: +powerbi_mov_address {
     }
   }
 
-  parameter: parametro_medida {
+  parameter: parametro_valor {
     type: unquoted
     allowed_value: {
       label: "Valor catastral"
@@ -42,6 +42,24 @@ view: +powerbi_mov_address {
       value: "m2"
     }
   }
+
+
+  dimension: dynamic_dimension {
+
+    sql:
+          {% if parametro_valor._parameter_value == 'catastral' %}
+            ${valor_catastral}
+          {% elsif parametro_valor._parameter_value == 'habitantes' %}
+          ${powerbi_mov_catastro.num_habitantes}
+          {% elsif parametro_valor._parameter_value == 'mascotas' %}
+          ${powerbi_mov_catastro.num_mascotas}
+           {% elsif parametro_valor._parameter_value == 'mascotas' %}
+          ${precio_m2_provincia}
+           {% else %}
+          ${valor_catastral}
+          {% endif %};;
+  }
+
 
   dimension: valor_catastral {
 
