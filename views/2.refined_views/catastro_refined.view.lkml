@@ -87,4 +87,16 @@ dimension: pk_catastro {
         ) / COUNT(${codloc}) ;;
     value_format_name: "decimal_2"
   }
+
+  dimension: direccion_clase_completa {
+    type: string
+    label: "Via y Dirección Completa"
+    sql: CONCAT(
+          COALESCE(${TABLE}.CLASE_VIA, ''), ' ',
+          COALESCE(${TABLE}.NOMBRE_VIA, ''), ' ',
+          COALESCE(${TABLE}.NUMERO_01, ''), ' ',
+          COALESCE(${TABLE}.CALIFICADOR_01, '')
+        ) ;;
+  }
+
 }
