@@ -7,6 +7,42 @@ view: +powerbi_mov_address {
     primary_key: yes
   }
 
+  parameter: parametro_geografico {
+    type: unquoted
+    allowed_value: {
+      label: "Provincias"
+      value: "provinces"
+    }
+    allowed_value: {
+      label: "Códigos Postales"
+      value: "cps"
+    }
+    allowed_value: {
+      label: "Municipios"
+      value: "municipios"
+    }
+  }
+
+  parameter: parametro_medida {
+    type: unquoted
+    allowed_value: {
+      label: "Valor catastral"
+      value: "catastral"
+    }
+    allowed_value: {
+      label: "Num Habitantes"
+      value: "habitantes"
+    }
+    allowed_value: {
+      label: "Num Mascotas"
+      value: "mascotas"
+    }
+    allowed_value: {
+      label: "Precio m2 provincial"
+      value: "m2"
+    }
+  }
+
   dimension: valor_catastral {
 
     type: number
