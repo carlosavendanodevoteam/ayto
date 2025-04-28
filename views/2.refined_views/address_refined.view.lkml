@@ -77,7 +77,7 @@ type: number
            {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'sum' %}
          ${count}
            {% else %}
-          ${valor_catastral}
+         ${avg_valor_catastral}
           {% endif %};;
   }
 
