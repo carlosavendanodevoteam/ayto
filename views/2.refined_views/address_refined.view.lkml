@@ -73,6 +73,7 @@ view: +powerbi_mov_address {
            {% else %}
           ${look_ubicaciones.cod_municipio}
           {% endif %};;
+
   }
 
 
