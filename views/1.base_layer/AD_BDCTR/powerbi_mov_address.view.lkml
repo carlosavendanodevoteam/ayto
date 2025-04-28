@@ -47,20 +47,13 @@ view: powerbi_mov_address {
     sql: ${TABLE}.COD_DISTBARSEC ;;
   }
 
-  dimension: cod_municipio {
-    type: number
-    sql: ${TABLE}.COD_MUNICIPIO ;;
-  }
 
   dimension: cod_pais {
     type: number
     sql: ${TABLE}.COD_PAIS ;;
   }
 
-  dimension: cod_provincia {
-    type: number
-    sql: ${TABLE}.COD_PROVINCIA ;;
-  }
+
 
   dimension: cod_pueblo {
     type: number

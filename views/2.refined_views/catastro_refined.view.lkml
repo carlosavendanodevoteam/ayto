@@ -61,7 +61,7 @@ dimension: pk_catastro {
     type: number
     label: "Superficie Total Construida (m²)"
     value_format_name: "decimal_2"
-    sql: SAFE_CAST(${TABLE}.sup_cons_sidh AS FLOAT64) + SAFE_CAST(${TABLE}.sup_cons_nodh AS FLOAT64) ;;
+    sql: SAFE_CAST(${TABLE}.sup_cons_sidh AS FLOAT64) ;;
   }
 
 
