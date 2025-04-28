@@ -7,21 +7,6 @@ view: +powerbi_mov_address {
     primary_key: yes
   }
 
-  parameter: parametro_geografico {
-    type: unquoted
-    allowed_value: {
-      label: "Provincias"
-      value: "provinces"
-    }
-    allowed_value: {
-      label: "Códigos Postales"
-      value: "cps"
-    }
-    allowed_value: {
-      label: "Municipios"
-      value: "municipios"
-    }
-  }
 
   parameter: parametro_valor {
     type: unquoted
@@ -81,20 +66,7 @@ type: number
           {% endif %};;
   }
 
-  dimension: dynamic_ubicacion{
 
-    sql:
-          {% if parametro_geografico._parameter_value == 'provinces' %}
-            ${look_ubicaciones.cod_provincia}
-          {% elsif parametro_geografico._parameter_value == 'cps' %}
-          ${codpost}
-          {% elsif parametro_geografico._parameter_value == 'municipios' %}
-          ${look_ubicaciones.cod_municipio}
-           {% else %}
-          ${look_ubicaciones.cod_municipio}
-          {% endif %};;
-
-  }
 
 measure: avg_valor_catastral {
   type: average
