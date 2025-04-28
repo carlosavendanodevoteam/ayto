@@ -98,11 +98,4 @@ dimension: pk_catastro {
           COALESCE(${TABLE}.CALIFICADOR_01, '')
         ) ;;
   }
-
-  dimension: fecha_movimiento_formateada {
-    type: string
-    label: "Fecha de Movimiento Formateada"
-    sql: FORMAT_DATE('%d-%m-%Y', DATE(${TABLE}.FECHA_MOVIMIENTO)) ;;
-  }
-
 }
