@@ -324,10 +324,4 @@ value_format: "\"€\"#,##0"
   }
 
 
-  measure: direcciones_por_provincia {
-    type: count_distinct
-    sql: ${coddomi} ;;
-    label: "Direcciones por Provincia"
-    description: "Número de direcciones distintas."
-  }
   }

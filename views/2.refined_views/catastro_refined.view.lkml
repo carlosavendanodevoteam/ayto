@@ -72,11 +72,6 @@ dimension: pk_catastro {
   }
 
 
-  measure: cantidad_inmuebles {
-    type: count
-    description: "Total de inmuebles registrados en la base catastral"
-  }
-
 
   measure: superficie_promedio {
     type: number
