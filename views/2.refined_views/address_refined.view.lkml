@@ -96,7 +96,15 @@ view: +powerbi_mov_address {
 
   }
 
+measure: avg_valor_catastral {
+  type: average
+  sql: ${valor_catastral} ;;
+}
 
+  measure: sum_valor_catastral {
+    type: sum
+    sql: ${valor_catastral} ;;
+  }
 
   dimension: valor_catastral {
 
