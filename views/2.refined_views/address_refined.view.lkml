@@ -99,11 +99,12 @@ view: +powerbi_mov_address {
 measure: avg_valor_catastral {
   type: average
   sql: ${valor_catastral} ;;
-}
+  value_format: "\"€\"#,##0"}
 
   measure: sum_valor_catastral {
     type: sum
     sql: ${valor_catastral} ;;
+    value_format: "\"€\"#,##0"
   }
 
   dimension: valor_catastral {
