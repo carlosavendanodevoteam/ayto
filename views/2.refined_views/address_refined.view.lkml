@@ -30,16 +30,28 @@ view: +powerbi_mov_address {
       value: "catastral"
     }
     allowed_value: {
-      label: "Num Habitantes"
+      label: "Registros"
+      value: "registros"
+    }
+    allowed_value: {
+      label: "Habitantes"
       value: "habitantes"
     }
     allowed_value: {
-      label: "Num Mascotas"
+      label: "Mascotas"
       value: "mascotas"
     }
+  }
+
+  parameter: parametro_medida {
+    type: unquoted
     allowed_value: {
-      label: "Precio m2 provincial"
-      value: "m2"
+      label: "Suma"
+      value: "sum"
+    }
+    allowed_value: {
+      label: "Media"
+      value: "med"
     }
   }
 
@@ -48,13 +60,21 @@ view: +powerbi_mov_address {
   dimension: dynamic_dimension {
 
     sql:
-          {% if parametro_valor._parameter_value == 'catastral' %}
+          {% if parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'sum' %}
             ${valor_catastral}
-          {% elsif parametro_valor._parameter_value == 'habitantes' %}
+          {% elsif parametro_valor._parameter_value == 'habitantes'and parametro_medida._parameter_value == 'sum' %}
           ${powerbi_mov_catastro.num_habitantes}
-          {% elsif parametro_valor._parameter_value == 'mascotas' %}
+          {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'sum' %}
           ${powerbi_mov_catastro.num_mascotas}
-           {% elsif parametro_valor._parameter_value == 'mascotas' %}
+           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'sum' %}
+          ${precio_m2_provincia}
+          {% elsif parametro_valor._parameter_value == 'habitantes'and parametro_medida._parameter_value == 'med' %}
+          ${powerbi_mov_catastro.num_habitantes}
+          {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'med' %}
+          ${powerbi_mov_catastro.num_mascotas}
+           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'med' %}
+          ${precio_m2_provincia}
+           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'med' %}
           ${precio_m2_provincia}
            {% else %}
           ${valor_catastral}
