@@ -57,25 +57,25 @@ view: +powerbi_mov_address {
 
 
 
-  dimension: dynamic_dimension {
-
+  measure: dynamic_medida {
+type: number
     sql:
-          {% if parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'sum' %}
-            ${valor_catastral}
-          {% elsif parametro_valor._parameter_value == 'habitantes'and parametro_medida._parameter_value == 'sum' %}
-          ${powerbi_mov_catastro.num_habitantes}
-          {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'sum' %}
-          ${powerbi_mov_catastro.num_mascotas}
-           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'sum' %}
-          ${precio_m2_provincia}
-          {% elsif parametro_valor._parameter_value == 'habitantes'and parametro_medida._parameter_value == 'med' %}
-          ${powerbi_mov_catastro.num_habitantes}
+          {% if parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'med' %}
+            ${avg_valor_catastral}
+          {% elsif parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'sum' %}
+          ${sum_valor_catastral}
           {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'med' %}
-          ${powerbi_mov_catastro.num_mascotas}
+          ${powerbi_mov_catastro.avg_num_mascotas}
+           {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'sum' %}
+         ${powerbi_mov_catastro.sum_num_mascotas}
+          {% elsif parametro_valor._parameter_value == 'habitantes'and parametro_medida._parameter_value == 'med' %}
+         ${powerbi_mov_catastro.avg_num_habitantes}
+          {% elsif parametro_valor._parameter_value == 'habitantes' and parametro_medida._parameter_value == 'sum' %}
+          ${powerbi_mov_catastro.sum_num_habitantes}
            {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'med' %}
-          ${precio_m2_provincia}
-           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'med' %}
-          ${precio_m2_provincia}
+          ${count}
+           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'sum' %}
+         ${count}
            {% else %}
           ${valor_catastral}
           {% endif %};;

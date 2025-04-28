@@ -9,7 +9,16 @@ dimension: pk_catastro {
 
 
 
+  measure: avg_num_habitantes {
+    type: average
+    sql: ${num_habitantes} ;;
+    value_format: "\"€\"#,##0"}
 
+  measure: sum_num_habitantes {
+    type: sum
+    sql: ${num_habitantes} ;;
+    value_format: "\"€\"#,##0"
+  }
 
 
   dimension: num_habitantes {
@@ -21,6 +30,19 @@ dimension: pk_catastro {
       WHEN ${tipo_bien_catastral} = 'M' THEN ROUND(GREATEST(0, 2.5 + 1 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
     END ;;
   }
+
+
+  measure: avg_num_mascotas {
+    type: average
+    sql: ${num_mascotas} ;;
+    value_format: "\"€\"#,##0"}
+
+  measure: sum_num_mascotas {
+    type: sum
+    sql: ${num_mascotas} ;;
+    value_format: "\"€\"#,##0"
+  }
+
 
   dimension: num_mascotas {
     type: number
