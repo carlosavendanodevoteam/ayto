@@ -61,7 +61,7 @@ dimension: pk_catastro {
     type: number
     label: "Superficie Total Construida (m²)"
     value_format_name: "decimal_2"
-    sql: SAFE_CAST(${TABLE}.sup_cons_sidh AS FLOAT64) + SAFE_CAST(${TABLE}.sup_cons_nodh AS FLOAT64) ;;
+    sql: SAFE_CAST(${TABLE}.sup_cons_sidh AS FLOAT64) ;;
   }
 
 
@@ -86,5 +86,16 @@ dimension: pk_catastro {
           SUM(SAFE_CAST(${sup_cons_nodh} AS FLOAT64))
         ) / COUNT(${codloc}) ;;
     value_format_name: "decimal_2"
+  }
+
+  dimension: direccion_clase_completa {
+    type: string
+    label: "Via y Dirección Completa"
+    sql: CONCAT(
+          COALESCE(${TABLE}.CLASE_VIA, ''), ' ',
+          COALESCE(${TABLE}.NOMBRE_VIA, ''), ' ',
+          COALESCE(${TABLE}.NUMERO_01, ''), ' ',
+          COALESCE(${TABLE}.CALIFICADOR_01, '')
+        ) ;;
   }
 }
