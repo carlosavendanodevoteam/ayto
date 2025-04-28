@@ -60,6 +60,20 @@ view: +powerbi_mov_address {
           {% endif %};;
   }
 
+  dimension: dynamic_ubicacion{
+
+    sql:
+          {% if parametro_geografico._parameter_value == 'provinces' %}
+            ${look_ubicaciones.cod_provincia}
+          {% elsif parametro_geografico._parameter_value == 'cps' %}
+          ${codpost}
+          {% elsif parametro_geografico._parameter_value == 'municipios' %}
+          ${look_ubicaciones.cod_municipio}
+           {% else %}
+          ${look_ubicaciones.cod_municipio}
+          {% endif %};;
+  }
+
 
   dimension: valor_catastral {
 
