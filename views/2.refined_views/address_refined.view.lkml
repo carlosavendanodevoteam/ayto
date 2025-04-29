@@ -64,6 +64,22 @@ type: number
            {% else %}
          ${avg_valor_catastral}
           {% endif %};;
+
+    html:
+
+    {% if parametro_valor._parameter_value == 'catastral'  %}
+
+    €{{rendered_value}}
+
+    {% else %}
+
+    {{rendered_value}}
+
+    {% endif %}
+
+    ;;
+
+    value_format: "#,##0.00"
   }
 
 
