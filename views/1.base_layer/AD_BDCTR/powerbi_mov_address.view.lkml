@@ -189,6 +189,7 @@ view: powerbi_mov_address {
   dimension: ref_parcela_cat {
     type: string
     sql: ${TABLE}.REF_PARCELA_CAT ;;
+    map_layer_name: parcelas
   }
 
   dimension: seccar {
