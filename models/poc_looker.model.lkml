@@ -69,7 +69,7 @@ explore: powerbi_mov_address {
 }
 
 
-explore: powerbi_mov_catastro {}
+
 
 explore: look_ubicaciones {}
 
