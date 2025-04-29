@@ -66,7 +66,4 @@ explore: powerbi_mov_address {
 }
 
 
-
-
-
 explore: jira {}
