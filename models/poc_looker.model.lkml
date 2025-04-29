@@ -73,11 +73,5 @@ explore: powerbi_mov_catastro {}
 
 explore: look_ubicaciones {}
 
-explore: jira_df {}
-
-
-explore: jira_sg_plataformas_digitales_df {}
-
-
 
 explore: jira {}
