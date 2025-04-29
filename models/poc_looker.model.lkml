@@ -46,11 +46,8 @@ map_layer: parcelas {
 # Each joined view also needs to define a primary key.
 
 
-
-explore: powerbi_mov_hole {}
-
 explore: powerbi_mov_address {
-  label: "Explore Poc"
+  label: "BDCTR"
   join: powerbi_mov_catastro {
     type: left_outer
     sql_on: ${powerbi_mov_address.clsdomi} = ${powerbi_mov_catastro.clsdomi} and ${powerbi_mov_address.coddomi} = ${powerbi_mov_catastro.coddomi} ;;
@@ -70,8 +67,6 @@ explore: powerbi_mov_address {
 
 
 
-
-explore: look_ubicaciones {}
 
 
 explore: jira {}
