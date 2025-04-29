@@ -25,7 +25,7 @@ view: look_ubicaciones {
 
   dimension: cod_provincia {
     type: number
-    sql: ${TABLE}.COD_PROVINCIA ;;
+    sql: LPAD(CAST(${TABLE}.COD_PROVINCIA AS STRING), 2, '0') ;;
     map_layer_name: provinces
   }
 
