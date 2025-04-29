@@ -25,9 +25,9 @@ dimension: pk_catastro {
     type: number
     sql:
     CASE
-      WHEN ${tipo_bien_catastral} IN ('V', 'R', 'M') and ${powerbi_mov_address.codpost} = 28040 THEN  3.85
+      WHEN ${tipo_bien_catastral} IN ('V', 'R', 'M') and ${powerbi_mov_address.codpost} = 28040 THEN  2.2
       WHEN ${tipo_bien_catastral} IN ('V', 'R', 'M') THEN
-        ROUND(GREATEST(0, 2 + 7 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
+        ROUND(GREATEST(0, 2 + 2 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
     END ;;
   }
 
@@ -49,9 +49,9 @@ dimension: pk_catastro {
     type: number
     sql:
     CASE
-      WHEN ${tipo_bien_catastral} IN ('V', 'R', 'M') and ${powerbi_mov_address.codpost} = 28040 THEN  1.85
+      WHEN ${tipo_bien_catastral} IN ('V', 'R', 'M') and ${powerbi_mov_address.codpost} = 28040 THEN  0.4
       WHEN ${tipo_bien_catastral} IN ('V', 'R', 'M') THEN
-        ROUND(GREATEST(0, 0.5 + 4 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
+        ROUND(GREATEST(0, 0 + 1 * SQRT(-2 * LOG(RAND())) * COS(2 * ACOS(-1) * RAND())))
     END ;;
   }
 

@@ -24,10 +24,11 @@ view: look_ubicaciones {
   }
 
   dimension: cod_provincia {
-    type: number
+    type: string
     sql: LPAD(CAST(${TABLE}.COD_PROVINCIA AS STRING), 2, '0') ;;
     map_layer_name: provinces
   }
+
 
   dimension: cod_pueblo {
     type: number

@@ -265,6 +265,7 @@ value_format: "\"€\"#,##0"
           WHEN LOWER(TRIM(${nom_provincia})) IN ('ávila', 'avila') THEN 1050
           WHEN LOWER(TRIM(${nom_provincia})) = 'la rioja' THEN 1400
           WHEN LOWER(TRIM(${nom_provincia})) = 'almería' THEN 1500
+          WHEN LOWER(TRIM(${nom_provincia})) = 'almeria' THEN 1500
           WHEN LOWER(TRIM(${nom_provincia})) IN ('castellón', 'castellon-castello') THEN 1500
           WHEN LOWER(TRIM(${nom_provincia})) = 'tarragona' THEN 1700
           WHEN LOWER(TRIM(${nom_provincia})) = 'girona' THEN 2300
@@ -275,6 +276,7 @@ value_format: "\"€\"#,##0"
           WHEN LOWER(TRIM(${nom_provincia})) = 'albacete' THEN 1300
           WHEN LOWER(TRIM(${nom_provincia})) = 'melilla' THEN 1800
           WHEN LOWER(TRIM(${nom_provincia})) = 'ceuta' THEN 2000
+          WHEN LOWER(TRIM(${nom_provincia})) = 'gipuzkoa' THEN 3000
           ELSE NULL
         END ;;
   }
