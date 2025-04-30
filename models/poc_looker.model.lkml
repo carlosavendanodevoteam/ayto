@@ -66,4 +66,6 @@ explore: powerbi_mov_address {
 }
 
 
-explore: jira {}
+explore: look_jira {
+  label: "JIRA"
+}
