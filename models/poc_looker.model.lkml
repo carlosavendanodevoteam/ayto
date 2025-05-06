@@ -71,6 +71,7 @@ explore: look_jira {
 }
 
 explore: jira_pop_2 {
+  label: "JIRA POP 2"
   sql_always_where:
   {% if jira_pop_2.current_date_range._is_filtered %} {% condition jira_pop_2.current_date_range %} ${fecha_creacion_raw} {% endcondition %}
   {% if jira_pop_2.previous_date_range._is_filtered or jira_pop_2.compare_to._in_query %}
