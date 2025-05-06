@@ -222,5 +222,4 @@ view: +look_jira {
       {% else %} NULL {% endif %} ;;
   }
 
-
 }
