@@ -53,7 +53,7 @@ view: +look_jira {
     sql: EXTRACT(DAYOFYEAR FROM ${created_date}) ;;
   }
 
-  # PoP METHOD 2
+  # PoP METHOD 1
 
   parameter: choose_breakdown {
     label: "2. Choose Grouping (Rows)"
@@ -127,10 +127,10 @@ view: +look_jira {
       {% else %}NULL{% endif %} ;;
   }
 
-  # PoP METHOD 4
+  # PoP METHOD 2
 
   parameter: comparison_periods {
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     label: "3. Number of Periods"
     type: unquoted
     default_value: "2"
@@ -140,7 +140,7 @@ view: +look_jira {
   }
 
   parameter: compare_to {
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     label: "4. Compare To"
     type: unquoted
     default_value: "Period"
@@ -153,14 +153,14 @@ view: +look_jira {
 
   filter: current_date_range {
     type: date
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     label: "1. Current Date Range"
     sql: ${period} IS NOT NULL ;;
   }
 
   dimension: days_in_period {
     hidden:  yes
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     description: "Gives the number of days in the current period date range"
     type: number
     sql: DATEDIFF(DAY, DATE({% date_start current_date_range %}), DATE({% date_end current_date_range %})) ;;
@@ -168,7 +168,7 @@ view: +look_jira {
 
   dimension: period_2_start {
     hidden:  yes
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     description: "Calculates the start of the previous period"
     type: date
     sql:
@@ -181,7 +181,7 @@ view: +look_jira {
 
   dimension: period_2_end {
     hidden:  yes
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     description: "Calculates the end of the previous period"
     type: date
     sql:
@@ -193,7 +193,7 @@ view: +look_jira {
   }
 
   dimension: period_3_start {
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     description: "Calculates the start of 2 periods ago"
     type: date
     sql:
@@ -207,7 +207,7 @@ view: +look_jira {
   }
 
   dimension: period_3_end {
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     description: "Calculates the end of 2 periods ago"
     type: date
     sql:
@@ -220,7 +220,7 @@ view: +look_jira {
   }
 
   dimension: period_4_start {
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     description: "Calculates the start of 4 periods ago"
     type: date
     sql:
@@ -233,7 +233,7 @@ view: +look_jira {
   }
 
   dimension: period_4_end {
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     description: "Calculates the end of 4 periods ago"
     type: date
     sql:
@@ -246,7 +246,7 @@ view: +look_jira {
   }
 
   dimension: period {
-    view_label: "_PoP"
+    view_label: "_PoP_2"
     label: "Period"
     description: "Pivot me! Returns the period the metric covers, i.e. either the 'This Period', 'Previous Period' or '3 Periods Ago'"
     type: string
@@ -317,6 +317,26 @@ view: +look_jira {
       {% endif %}
       ;;
     hidden: yes
+  }
+
+  dimension_group: date_in_period {
+    description: "Use this as your grouping dimension when comparing periods. Aligns the previous periods onto the current period"
+    label: "Current Period"
+    type: time
+    sql: DATE_ADD(DATE({% date_start current_date_range %}), INTERVAL ${day_in_period} - 1 DAY);;
+    view_label: "_PoP_2"
+    timeframes: [
+      date,
+      hour_of_day,
+      day_of_week,
+      day_of_week_index,
+      day_of_month,
+      day_of_year,
+      week_of_year,
+      month,
+      month_name,
+      month_num,
+      year]
   }
 
 

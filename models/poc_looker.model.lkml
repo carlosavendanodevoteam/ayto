@@ -69,3 +69,23 @@ explore: powerbi_mov_address {
 explore: look_jira {
   label: "JIRA"
 }
+
+explore: jira_pop_2 {
+  sql_always_where:
+  {% if jira_pop_2.current_date_range._is_filtered %} {% condition jira_pop_2.current_date_range %} ${fecha_creacion_raw} {% endcondition %}
+  {% if jira_pop_2.previous_date_range._is_filtered or jira_pop_2.compare_to._in_query %}
+  {% if jira_pop_2.comparison_periods._parameter_value == "2" %}
+  or DATE(${fecha_creacion_raw}) between  DATE(${period_2_start}) and  DATE(${period_2_end})
+  {% elsif jira_pop_2.comparison_periods._parameter_value == "3" %}
+  or DATE(${fecha_creacion_raw}) BETWEEN DATE(${period_2_start}) AND DATE(${period_2_end})
+  or DATE(${fecha_creacion_raw}) BETWEEN DATE(${period_3_start}) AND DATE(${period_3_end})
+  {% elsif jira_pop_2.comparison_periods._parameter_value == "4" %}
+  or  DATE(${fecha_creacion_raw}) between  DATE(${period_2_start}) and  DATE(${period_2_end})
+  or  DATE(${fecha_creacion_raw}) between  DATE(${period_3_start})and  DATE(${period_3_end}) or  DATE(${fecha_creacion_raw}) between  DATE(${period_4_start}) and  DATE(${period_4_end})
+  {% else %} 1 = 1
+  {% endif %}
+  {% endif %}
+  {% else %} 1 = 1
+  {% endif %};;
+
+}
