@@ -129,97 +129,98 @@ view: +look_jira {
 
   # PoP METHOD 4
 
- parameter: comparison_periods {
-  view_label: "_PoP"
-  label: "3. Number of Periods"
-  type: unquoted
-  default_value: "2"
-  allowed_value: {label: "2" value: "2"}
-  allowed_value: {label: "3" value: "3"}
-  allowed_value: {label: "4" value: "4"}
-}
+  parameter: comparison_periods {
+    view_label: "_PoP"
+    label: "3. Number of Periods"
+    type: unquoted
+    default_value: "2"
+    allowed_value: {label: "2" value: "2"}
+    allowed_value: {label: "3" value: "3"}
+    allowed_value: {label: "4" value: "4"}
+  }
 
-parameter: compare_to {
-  view_label: "_PoP"
-  label: "4. Compare To"
-  type: unquoted
-  default_value: "Period"
-  allowed_value: {label: "Previous Period" value: "Period"}
-  allowed_value: {label: "Previous Week" value: "Week"}
-  allowed_value: {label: "Previous Month" value: "Month"}
-  allowed_value: {label: "Previous Quarter" value: "Quarter"}
-  allowed_value: {label: "Previous Year" value: "Year"}
-}
+  parameter: compare_to {
+    view_label: "_PoP"
+    label: "4. Compare To"
+    type: unquoted
+    default_value: "Period"
+    allowed_value: {label: "Previous Period" value: "Period"}
+    allowed_value: {label: "Previous Week" value: "Week"}
+    allowed_value: {label: "Previous Month" value: "Month"}
+    allowed_value: {label: "Previous Quarter" value: "Quarter"}
+    allowed_value: {label: "Previous Year" value: "Year"}
+  }
 
-filter: current_date_range {
-  type: date
-  view_label: "_PoP"
-  label: "1. Current Date Range"
-  sql: ${period} IS NOT NULL ;;
-}
+  filter: current_date_range {
+    type: date
+    view_label: "_PoP"
+    label: "1. Current Date Range"
+    sql: ${period} IS NOT NULL ;;
+  }
 
-dimension: days_in_period {
-  hidden: yes
-  type: number
-  sql: DATE_DIFF(DATE({% date_end current_date_range %}), DATE({% date_start current_date_range %})) ;;
-}
+  dimension: days_in_period {
+    hidden: yes
+    type: number
+    sql: DATE_DIFF(DATE({% date_end current_date_range %}), DATE({% date_start current_date_range %})) ;;
+  }
 
-dimension: period_2_start {
-  hidden: yes
-  type: date
-  sql:
+  dimension: period_2_start {
+    hidden: yes
+    type: date
+    sql:
       {% if compare_to._parameter_value == "Period" %}
         DATE_SUB(DATE({% date_start current_date_range %}), INTERVAL ${days_in_period} DAY)
       {% else %}
         DATE_SUB(DATE({% date_start current_date_range %}), INTERVAL 1 {% parameter compare_to %})
       {% endif %} ;;
-}
+  }
 
-dimension: period_2_end {
-  hidden: yes
-  type: date
-  sql:
+  dimension: period_2_end {
+    hidden: yes
+    type: date
+    sql:
       {% if compare_to._parameter_value == "Period" %}
         DATE_SUB(DATE({% date_start current_date_range %}), INTERVAL 1 DAY)
       {% else %}
         DATE_SUB(DATE({% date_end current_date_range %}), INTERVAL 1 {% parameter compare_to %})
       {% endif %} ;;
-}
+  }
 
-dimension: period {
-  type: string
-  order_by_field: order_for_period
-  sql:
+  dimension: period {
+    type: string
+    order_by_field: order_for_period
+    sql:
       {% if current_date_range._is_filtered %}
         CASE
           WHEN {% condition current_date_range %} ${created_raw} {% endcondition %} THEN 'This {% parameter compare_to %}'
           WHEN ${created_date} BETWEEN ${period_2_start} AND ${period_2_end} THEN 'Last {% parameter compare_to %}'
         END
       {% else %} NULL {% endif %} ;;
-}
+  }
 
-dimension: order_for_period {
-  type: number
-  hidden: yes
-  sql:
+  dimension: order_for_period {
+    type: number
+    hidden: yes
+    sql:
       {% if current_date_range._is_filtered %}
         CASE
           WHEN {% condition current_date_range %} ${created_raw} {% endcondition %} THEN 1
           WHEN ${created_date} BETWEEN ${period_2_start} AND ${period_2_end} THEN 2
         END
       {% else %} NULL {% endif %} ;;
-}
+  }
 
-dimension: day_in_period {
-  type: number
-  hidden: yes
-  sql:
+  dimension: day_in_period {
+    type: number
+    hidden: yes
+    sql:
       {% if current_date_range._is_filtered %}
         CASE
           WHEN {% condition current_date_range %} ${created_raw} {% endcondition %} THEN DATE_DIFF(${created_date}, DATE({% date_start current_date_range %})) + 1
           WHEN ${created_date} BETWEEN ${period_2_start} AND ${period_2_end} THEN DATE_DIFF(${created_date}, ${period_2_start}) + 1
         END
       {% else %} NULL {% endif %} ;;
-}
+  }
+
 
 }
