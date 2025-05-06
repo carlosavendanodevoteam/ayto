@@ -53,6 +53,7 @@ view: look_jira {
     sql: ${TABLE}.FECHA_CREACION ;;
   }
   dimension: fecha_resolucion {
+    hidden: yes
     type: string
     sql: ${TABLE}.FECHA_RESOLUCION ;;
   }

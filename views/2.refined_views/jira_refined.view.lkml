@@ -244,7 +244,7 @@ view: +look_jira {
   dimension: dias_entre_creacion_y_resolucion {
     type: number
     label: "Días entre creación y resolución"
-    sql: DATE_DIFF(${fecha_resolucion_raw}, ${fecha_creacion_raw}) ;;
+    sql: DATE_DIFF(${fecha_resolucion_date}, ${fecha_creacion_date}, DAY) ;;
   }
 
 
