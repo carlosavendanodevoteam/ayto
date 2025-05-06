@@ -34,7 +34,7 @@ view: jira_pop_2 {
 
  dimension: days_in_period {
   hidden: yes
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   description: "Gives the number of days in the current period date range"
   type: number
   sql: DATE_DIFF(DATE({% date_end current_date_range %}), DATE({% date_start current_date_range %}), DAY) ;;
@@ -42,7 +42,7 @@ view: jira_pop_2 {
 
 dimension: period_2_start {
   hidden: yes
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   description: "Calculates the start of the previous period"
   type: date
   sql:
@@ -55,7 +55,7 @@ dimension: period_2_start {
 
 dimension: period_2_end {
   hidden: yes
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   description: "Calculates the end of the previous period"
   type: date
   sql:
@@ -67,7 +67,7 @@ dimension: period_2_end {
 }
 
 dimension: period_3_start {
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   description: "Calculates the start of 2 periods ago"
   type: date
   sql:
@@ -80,7 +80,7 @@ dimension: period_3_start {
 }
 
 dimension: period_3_end {
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   description: "Calculates the end of 2 periods ago"
   type: date
   sql:
@@ -93,7 +93,7 @@ dimension: period_3_end {
 }
 
 dimension: period_4_start {
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   description: "Calculates the start of 4 periods ago"
   type: date
   sql:
@@ -106,7 +106,7 @@ dimension: period_4_start {
 }
 
 dimension: period_4_end {
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   description: "Calculates the end of 4 periods ago"
   type: date
   sql:
@@ -123,7 +123,7 @@ dimension_group: date_in_period {
   label: "Current Period"
   type: time
   sql: DATE_ADD(DATE({% date_start current_date_range %}), INTERVAL ${day_in_period} - 1 DAY);;
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   timeframes: [
     date,
     hour_of_day,
@@ -140,7 +140,7 @@ dimension_group: date_in_period {
 
 
 dimension: period {
-  view_label: "_PoP"
+  view_label: "_PoP_2"
   label: "Period"
   description: "Pivot me! Returns the period the metric covers, i.e. either the 'This Period', 'Previous Period' or '3 Periods Ago'"
   type: string
