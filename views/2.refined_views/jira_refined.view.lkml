@@ -222,4 +222,29 @@ dimension: day_in_period {
       {% else %} NULL {% endif %} ;;
 }
 
+
+
+
+
+
+
+
+
+
+
+  dimension_group: fecha_resolucion {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: DATE(PARSE_TIMESTAMP('%Y-%m-%dT%H:%M:%E3S%Ez', NULLIF(${TABLE}.FECHA_RESOLUCION, 'None'))) ;;
+  }
+
+  dimension: dias_entre_creacion_y_resolucion {
+    type: number
+    label: "Días entre creación y resolución"
+    sql: DATE_DIFF(${fecha_resolucion_raw}, ${fecha_creacion_raw}) ;;
+  }
+
+
 }
