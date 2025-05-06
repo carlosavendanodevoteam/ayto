@@ -232,7 +232,6 @@ view: +look_jira {
 
 
 
-
   dimension_group: fecha_resolucion {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
@@ -246,6 +245,5 @@ view: +look_jira {
     label: "Días entre creación y resolución"
     sql: DATE_DIFF(${fecha_resolucion_date}, ${fecha_creacion_date}, DAY) ;;
   }
-
 
 }
