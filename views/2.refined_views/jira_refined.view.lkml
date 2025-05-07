@@ -94,4 +94,5 @@ view: +look_jira {
     sql: DATE_DIFF(${fecha_resolucion_date}, ${fecha_creacion_date}, DAY) ;;
   }
 
+
 }
