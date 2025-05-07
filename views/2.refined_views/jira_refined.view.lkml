@@ -339,7 +339,7 @@ view: +look_jira {
   dimension: dias_entre_creacion_y_resolucion {
     type: number
     label: "Días entre creación y resolución"
-    sql: DATE_DIFF(${fecha_resolucion_date}, ${fecha_creacion_date}, DAY) ;;
+    sql: DATE_DIFF (DATE(${fecha_resolucion_date}), DATE(${fecha_creacion_date}), DAY) ;;
   }
 
 }
