@@ -117,4 +117,25 @@ dimension: pk_catastro {
           COALESCE(${TABLE}.CALIFICADOR_01, '')
         ) ;;
   }
+
+
+  measure: count_bienes_catastrales {
+    type: count
+    drill_fields: [desglose_catastro*]
+  }
+
+
+  set: desglose_catastro {
+    fields: [
+      rc20,
+      numoec_seq,
+      tipo_bien_catastral,
+      tipo_bien_descriptivo,
+      superficie_total_construida,
+      direccion_clase_completa,
+      num_habitantes,
+      num_mascotas,
+      fecha_movimiento_date
+    ]
+    }
 }
