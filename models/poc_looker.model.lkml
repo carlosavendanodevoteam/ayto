@@ -4,6 +4,12 @@ connection: "connection_bq"
 # include all the views
 include: "/views/**/*.view.lkml"
 
+access_grant: puede_ver_bienes_restringidos {
+  user_attribute: rol_ayto
+  allowed_values: ["admin_catastro"]
+}
+
+
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
