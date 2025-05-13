@@ -139,16 +139,5 @@ dimension: pk_catastro {
     ]
     }
 
-  dimension: tipo_bien_descriptivo {
-    type: string
-    label: "Tipo de Bien Catastral Descriptivo"
-    sql:
-    CASE
-      WHEN ${tipo_bien_catastral} = 'K' THEN 'Deportivo'
-      WHEN ${tipo_bien_catastral} = 'Y' THEN 'Sanidad y beneficencia'
-      ...
-      ELSE 'Desconocido'
-    END ;;
-  }
 
 }
