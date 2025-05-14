@@ -96,7 +96,7 @@ measure: avg_valor_catastral {
   }
 
   dimension: valor_catastral {
-    #required_access_grants: [puede_ver_bienes_restringidos]
+    required_access_grants: [puede_ver_valor_catastral]
 
     type: number
 
