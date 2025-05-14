@@ -54,6 +54,10 @@ map_layer: parcelas {
 
 explore: powerbi_mov_address {
   label: "BDCTR"
+
+  sql_always_where: ${powerbi_mov_catastro.tipo_bien_descriptivo} IN ('Residencial') ;;
+
+
   join: powerbi_mov_catastro {
     type: left_outer
     sql_on: ${powerbi_mov_address.clsdomi} = ${powerbi_mov_catastro.clsdomi} and ${powerbi_mov_address.coddomi} = ${powerbi_mov_catastro.coddomi} ;;
