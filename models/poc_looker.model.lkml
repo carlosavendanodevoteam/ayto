@@ -107,8 +107,3 @@ explore: jira_pop_2 {
   {% endif %};;
 
 }
-
-explore: jira_pop_nativa {
-  label: "JIRA PoP Nativa"
-  from: jira_pop_nativa
-}
