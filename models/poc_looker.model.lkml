@@ -57,6 +57,11 @@ explore: powerbi_mov_address {
 
   sql_always_where: ${powerbi_mov_catastro.tipo_bien_descriptivo} IN ('Residencial') ;;
 
+  access_filter: {
+    field: powerbi_mov_address.distrito_postal
+    user_attribute: distrito_usuario
+  }
+
 
   join: powerbi_mov_catastro {
     type: left_outer
