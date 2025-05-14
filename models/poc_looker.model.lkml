@@ -4,10 +4,10 @@ connection: "connection_bq"
 # include all the views
 include: "/views/**/*.view.lkml"
 
-access_grant: puede_ver_bienes_restringidos {
-  user_attribute: rol_ayto
-  allowed_values: ["admin_catastro"]
-}
+#access_grant: puede_ver_bienes_restringidos {
+#  user_attribute: rol_ayto
+#  allowed_values: ["admin_catastro"]
+#}
 
 
 # Datagroups define a caching policy for an Explore. To learn more,
@@ -55,12 +55,12 @@ map_layer: parcelas {
 explore: powerbi_mov_address {
   label: "BDCTR"
 
-  sql_always_where: ${powerbi_mov_catastro.tipo_bien_descriptivo} IN ('Residencial') ;;
+#  sql_always_where: ${powerbi_mov_catastro.tipo_bien_descriptivo} IN ('Residencial') ;;
 
-  access_filter: {
-    field: powerbi_mov_address.distrito_postal
-    user_attribute: distrito_usuario
-  }
+#  access_filter: {
+#    field: powerbi_mov_address.distrito_postal
+#    user_attribute: distrito_usuario
+#  }
 
 
   join: powerbi_mov_catastro {
