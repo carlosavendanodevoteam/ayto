@@ -7,87 +7,10 @@ view: +powerbi_mov_address {
     primary_key: yes
   }
 
-
-  parameter: parametro_valor {
-    type: unquoted
-    allowed_value: {
-      label: "Valor catastral"
-      value: "catastral"
-    }
-    allowed_value: {
-      label: "Registros"
-      value: "registros"
-    }
-    allowed_value: {
-      label: "Habitantes"
-      value: "habitantes"
-    }
-    allowed_value: {
-      label: "Mascotas"
-      value: "mascotas"
-    }
-  }
-
-  parameter: parametro_medida {
-    type: unquoted
-    allowed_value: {
-      label: "Suma"
-      value: "sum"
-    }
-    allowed_value: {
-      label: "Media"
-      value: "med"
-    }
-  }
-
-
-
-  measure: dynamic_medida {
-type: number
-    sql:
-          {% if parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'med' %}
-            ${avg_valor_catastral}
-          {% elsif parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'sum' %}
-          ${sum_valor_catastral}
-          {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'med' %}
-          ${powerbi_mov_catastro.avg_num_mascotas}
-           {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'sum' %}
-         ${powerbi_mov_catastro.sum_num_mascotas}
-          {% elsif parametro_valor._parameter_value == 'habitantes'and parametro_medida._parameter_value == 'med' %}
-         ${powerbi_mov_catastro.avg_num_habitantes}
-          {% elsif parametro_valor._parameter_value == 'habitantes' and parametro_medida._parameter_value == 'sum' %}
-          ${powerbi_mov_catastro.sum_num_habitantes}
-           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'med' %}
-          ${count}
-           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'sum' %}
-         ${count}
-           {% else %}
-         ${avg_valor_catastral}
-          {% endif %};;
-
-    html:
-
-    {% if parametro_valor._parameter_value == 'catastral'  %}
-
-    €{{rendered_value}}
-
-    {% else %}
-
-    {{rendered_value}}
-
-    {% endif %}
-
-    ;;
-
-    value_format: "#,##0.00"
-  }
-
-
-
-measure: avg_valor_catastral {
-  type: average
-  sql: ${valor_catastral} ;;
-  value_format: "\"€\"#,##0"}
+  measure: avg_valor_catastral {
+    type: average
+    sql: ${valor_catastral} ;;
+    value_format: "\"€\"#,##0"}
 
   measure: sum_valor_catastral {
     type: sum
@@ -103,12 +26,12 @@ measure: avg_valor_catastral {
     label: "Valor Catastral Estimado"
 
     #value_format: "\"€\"#,##0.00"
-value_format: "\"€\"#,##0"
+    value_format: "\"€\"#,##0"
     sql:
 
       CASE
 
-                    -- ZONA CARA
+                          -- ZONA CARA
 
       WHEN ${codpost} IN (28006,28010,28009,28004,28046,28001,28014,28003,28005,28002) THEN
 
@@ -342,6 +265,85 @@ value_format: "\"€\"#,##0"
       ELSE 'Otro'
     END ;;
   }
+
+
+
+  parameter: parametro_valor {
+    type: unquoted
+    allowed_value: {
+      label: "Valor catastral"
+      value: "catastral"
+    }
+    allowed_value: {
+      label: "Registros"
+      value: "registros"
+    }
+    allowed_value: {
+      label: "Habitantes"
+      value: "habitantes"
+    }
+    allowed_value: {
+      label: "Mascotas"
+      value: "mascotas"
+    }
+  }
+
+  parameter: parametro_medida {
+    type: unquoted
+    allowed_value: {
+      label: "Suma"
+      value: "sum"
+    }
+    allowed_value: {
+      label: "Media"
+      value: "med"
+    }
+  }
+
+
+
+  measure: dynamic_medida {
+type: number
+    sql:
+          {% if parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'med' %}
+            ${avg_valor_catastral}
+          {% elsif parametro_valor._parameter_value == 'catastral' and parametro_medida._parameter_value == 'sum' %}
+          ${sum_valor_catastral}
+          {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'med' %}
+          ${powerbi_mov_catastro.avg_num_mascotas}
+           {% elsif parametro_valor._parameter_value == 'mascotas' and parametro_medida._parameter_value == 'sum' %}
+         ${powerbi_mov_catastro.sum_num_mascotas}
+          {% elsif parametro_valor._parameter_value == 'habitantes'and parametro_medida._parameter_value == 'med' %}
+         ${powerbi_mov_catastro.avg_num_habitantes}
+          {% elsif parametro_valor._parameter_value == 'habitantes' and parametro_medida._parameter_value == 'sum' %}
+          ${powerbi_mov_catastro.sum_num_habitantes}
+           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'med' %}
+          ${count}
+           {% elsif parametro_valor._parameter_value == 'registros' and parametro_medida._parameter_value == 'sum' %}
+         ${count}
+           {% else %}
+         ${avg_valor_catastral}
+          {% endif %};;
+
+    html:
+
+    {% if parametro_valor._parameter_value == 'catastral'  %}
+
+    €{{rendered_value}}
+
+    {% else %}
+
+    {{rendered_value}}
+
+    {% endif %}
+
+    ;;
+
+    value_format: "#,##0.00"
+  }
+
+
+
 
 
   }
