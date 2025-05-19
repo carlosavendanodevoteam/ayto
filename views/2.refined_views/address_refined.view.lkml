@@ -19,7 +19,7 @@ view: +powerbi_mov_address {
   }
 
   dimension: valor_catastral {
-  required_access_grants: [puede_ver_valor_catastral]
+  #required_access_grants: [puede_ver_valor_catastral]
 
     type: number
 
