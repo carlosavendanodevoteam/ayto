@@ -57,12 +57,12 @@ access_grant: puede_ver_valor_catastral {
 explore: powerbi_mov_address {
   label: "BDCTR"
 
-#  sql_always_where: ${powerbi_mov_catastro.tipo_bien_descriptivo} IN ('Residencial') ;;
+#sql_always_where: ${powerbi_mov_catastro.tipo_bien_descriptivo} IN ('Residencial') ;;
 
-   #access_filter: {
-   #field: powerbi_mov_address.distrito_postal
-   # user_attribute: distrito_usuario
-  #}
+   access_filter: {
+   field: powerbi_mov_address.distrito_postal
+    user_attribute: distrito_usuario
+  }
 
 
   join: powerbi_mov_catastro {
